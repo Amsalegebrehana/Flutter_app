@@ -19,23 +19,27 @@ class _HomeCollectedScreenState extends State<HomeCollectedScreen> {
   final double circleRadius = 50.0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: NavigationDrawer(),
+    return 
+    Scaffold(
+       drawer: NavigationDrawer(),
       bottomNavigationBar: BottomNav(),
-      body:  
-       Stack(
-        children: [
-          Expanded(child: FeaturedCategory()),
-          Padding(padding: EdgeInsets.only(top: 300),
-          child: 
-          Expanded(child: FeaturedProvider())
-
-          ,)
-
-        ],
-      )
-      // FeaturedCategory(),
-      // FeaturedProvider()
+      appBar: AppBar(actions: [],
+      title: Text("Delalo"),
+      backgroundColor: Colors.purple,
+      ),
+      body:
+    Stack(
+      children: [
+        FeaturedCategory(),
+        Padding(
+          padding: EdgeInsets.only(top: 300),
+          child: FeaturedProvider(),
+        )
+      ],
+    )
+    //   )
+    //   // FeaturedCategory(),
+    //   // FeaturedProvider()
     );
     //     Column(
     //   children: [
@@ -184,49 +188,47 @@ class _FeaturedCategoryState extends State<FeaturedCategory> {
         return Text("Loading failed");
       } else if (categoryState is CategoryLoaded) {
         final categories = categoryState.catagories;
-        return  Expanded(
-          child: ListView.builder(
-               scrollDirection: Axis.horizontal,
-              itemCount: 3,
-              itemBuilder: (_, index) {
-                final category = categories[index];
-                if (category.numOfProviders >= 10) {
-                  return Card(
-                    color: Colors.grey[200],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    shadowColor: Colors.black,
-                    child: Center(
-                      child: ExpansionTile(
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(''),
-                        ),
-                        title: Text(
-                          category.name,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        subtitle: Text(
-                          'Number of providers: ${(category.numOfProviders).toString()}',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        children: [
-                          ListTile(
-                            title: Text(
-                              category.description,
-                            ),
-                            subtitle: Text(
-                              category.description,
-                            ),
-                          ),
-                        ],
+        return ListView.builder(
+            //  scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            itemBuilder: (_, index) {
+              final category = categories[index];
+              if (category.numOfProviders >= 10) {
+                return Card(
+                  color: Colors.grey[200],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  shadowColor: Colors.black,
+                  child: Center(
+                    child: ExpansionTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(''),
                       ),
+                      title: Text(
+                        category.name,
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      subtitle: Text(
+                        'Number of providers: ${(category.numOfProviders).toString()}',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      children: [
+                        ListTile(
+                          title: Text(
+                            category.description,
+                          ),
+                          subtitle: Text(
+                            category.description,
+                          ),
+                        ),
+                      ],
                     ),
-                  );
-                }
-                return Container();
-              }),
-        );
+                  ),
+                );
+              }
+              return Container();
+            });
       }
       return Container();
     });
@@ -243,7 +245,7 @@ class FeaturedProvider extends StatefulWidget {
 class _FeaturedProviderState extends State<FeaturedProvider> {
   @override
   Widget build(BuildContext context) {
-        final providersBloc = BlocProvider.of<ProvidersBloc>(context);
+    final providersBloc = BlocProvider.of<ProvidersBloc>(context);
 
     return BlocBuilder<ProvidersBloc, ProvidersState>(
         builder: (_, providersState) {
@@ -253,30 +255,27 @@ class _FeaturedProviderState extends State<FeaturedProvider> {
         return Text("Loading failed");
       } else if (providersState is ProviderLoaded) {
         final providers = providersState.providers;
-        return new Expanded(
-          child: ListView.builder(
-               scrollDirection: Axis.horizontal,
-              itemCount: 3,
-              itemBuilder: (_, index) {
-                final provider = providers[index];
-                if (provider.role == 'provider') {
-                  return Container(
-                    //  color: Colors.grey[100],
+        return ListView.builder(
+            //  scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            itemBuilder: (_, index) {
+              final provider = providers[index];
+              if (provider.role == 'provider') {
+                return Container(
+                  //  color: Colors.grey[100],
 
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage:
-                            NetworkImage('https://picsum.photos/250?image=9'),
-                      ),
-                      title: Text(provider.firstname),
-                      subtitle: Text(provider.lastname),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('https://picsum.photos/250?image=9'),
                     ),
-                  );
-                } 
-                  return Container();
-                
-              }),
-        );
+                    title: Text(provider.firstname),
+                    subtitle: Text(provider.lastname),
+                  ),
+                );
+              }
+              return Container();
+            });
       }
       return Container();
     });
