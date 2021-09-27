@@ -43,6 +43,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SignupUserForm());
       case ordersScreenName:
         return MaterialPageRoute(builder: (_) => OrdersScreen());
+      case signupProviderScreenName:
+        return MaterialPageRoute(builder: (_) => SignupProviderForm());  
       case jobsScreenName:
         return MaterialPageRoute(builder: (_) => JobsScreen());
       case categoryListPage:
