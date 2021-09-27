@@ -46,7 +46,7 @@ class _AdminOrdersJobsState extends State<AdminOrdersJobs> {
                       Expanded(
                         
                         child: Container(
-                          color: color_swap,
+                         color: (index % 2 == 0) ? Colors.white : Colors.grey[200],
                           child: Padding(
                           padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
 
@@ -82,41 +82,45 @@ class _AdminOrdersJobsState extends State<AdminOrdersJobs> {
                       ),
                       Expanded(
                         child: Container(
-                          color: color_swap_white,
+                       color: (index % 2 == 0) ? Colors.grey[200] : Colors.white,
+
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 5, 5, 10),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                Text("Seeker Name "),
+                            padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(15, 5, 5, 10),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                  Text("Seeker Name "),
 
-                                Text(" ${seeker_user_name}"),
+                                  Text(" ${seeker_user_name}"),
 
-                                  ],
+                                    ],
 
-                                ),
-                                 SizedBox(height: 5,),
-                                 Row(
-                                  children: [
-                                Text("Unique Code "),
-                                Text(" ${order.order!.unique_code}"),
+                                  ),
+                                   SizedBox(height: 5,),
+                                   Row(
+                                    children: [
+                                  Text("Unique Code "),
+                                  Text(" ${order.order!.unique_code}"),
 
-                                  ],
-                                  
-                                ),
-                                SizedBox(height: 5,),
-                                 Row(
-                                  children: [
-                                Text("Saved Time"),
-                                Text(" ${order.order!.saved_time}"),
+                                    ],
+                                    
+                                  ),
+                                  SizedBox(height: 5,),
+                                   Row(
+                                    children: [
+                                  Text("Saved Time"),
+                                  Text(" ${order.order!.saved_time}"),
 
-                                  ],
-                                  
-                                )
-                                // Text('Start Time ${order.user!.start_time}'),
-                                // Text("Saved Time ${order.user!.saved_time}")
-                              ],
+                                    ],
+                                    
+                                  )
+                                  // Text('Start Time ${order.user!.start_time}'),
+                                  // Text("Saved Time ${order.user!.saved_time}")
+                                ],
+                              ),
                             ),
                           ),
                         ),
